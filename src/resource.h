@@ -6,7 +6,7 @@
 #define IDB_BITMAP1                     102
 #define IDI_ICON1                       103
 #define IDC_DISPLAY                     1001
-#define IDC_DEVICE                      1002
+#define IDC_ADAPTER                     1002
 #define IDC_FORMAT                      1003
 #define IDC_RESOLUTION                  1004
 #define IDC_VSYNC                       1005

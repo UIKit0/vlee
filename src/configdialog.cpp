@@ -155,11 +155,11 @@ static void addAdapters(HWND hDlg)
 		direct3d->GetAdapterIdentifier(i, 0, &identifier);
 		static char temp[256];
 		sprintf_s(temp, 256, "%s on %s", identifier.DeviceName, identifier.Description);
-		SendMessage(GetDlgItem(hDlg, IDC_DEVICE), CB_ADDSTRING, 0, (LPARAM)temp);
+		SendMessage(GetDlgItem(hDlg, IDC_ADAPTER), CB_ADDSTRING, 0, (LPARAM)temp);
 	}
 
 	// select first adapter by default
-	SendMessage(GetDlgItem(hDlg, IDC_DEVICE), (UINT)CB_SETCURSEL, (WPARAM)adapter, 0);
+	SendMessage(GetDlgItem(hDlg, IDC_ADAPTER), (UINT)CB_SETCURSEL, (WPARAM)adapter, 0);
 }
 
 static const struct {
@@ -241,9 +241,9 @@ static LRESULT onInitDialog(HWND hDlg)
 	return (LRESULT)TRUE;
 }
 
-static LRESULT onDeviceChange(HWND hDlg)
+static LRESULT onAdapterChange(HWND hDlg)
 {
-	adapter = (unsigned)SendMessage(GetDlgItem(hDlg, IDC_DEVICE), (UINT)CB_GETCURSEL, (WPARAM)0, 0);
+	adapter = (unsigned)SendMessage(GetDlgItem(hDlg, IDC_ADAPTER), (UINT)CB_GETCURSEL, (WPARAM)0, 0);
 	refreshFormats(hDlg);
 	refreshModes(hDlg);
 	refreshMultisampleTypes(hDlg);
@@ -307,9 +307,9 @@ static LRESULT CALLBACK configDialogProc(HWND hDlg, UINT message, WPARAM wParam,
 			return onCloseCmd(hDlg, LOWORD(wParam));
 			break;
 
-		case IDC_DEVICE:
+		case IDC_ADAPTER:
 			if (CBN_SELCHANGE == HIWORD(wParam))
-				return onDeviceChange(hDlg);
+				return onAdapterChange(hDlg);
 			break;
 
 		case IDC_FULLSCREEN:
