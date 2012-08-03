@@ -244,6 +244,7 @@ static LRESULT onInitDialog(HWND hDlg)
 static LRESULT onAdapterChange(HWND hDlg)
 {
 	adapter = (unsigned)SendMessage(GetDlgItem(hDlg, IDC_ADAPTER), (UINT)CB_GETCURSEL, (WPARAM)0, 0);
+	direct3d->GetAdapterDisplayMode(adapter, &mode);
 	refreshFormats(hDlg);
 	refreshModes(hDlg);
 	refreshMultisampleTypes(hDlg);
