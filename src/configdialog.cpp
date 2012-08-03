@@ -107,6 +107,8 @@ static void refreshMultisampleTypes(HWND hDlg)
 	SendMessage(GetDlgItem(hDlg, IDC_MULTISAMPLE), (UINT)CB_SETCURSEL, (WPARAM)best_hit, 0);
 	multisample = (D3DMULTISAMPLE_TYPE)SendMessage(GetDlgItem(hDlg, IDC_MULTISAMPLE), (UINT)CB_GETITEMDATA, (WPARAM)SendMessage(GetDlgItem(hDlg, IDC_MULTISAMPLE), (UINT)CB_GETCURSEL, (WPARAM)0, 0), 0);
 	EnableWindow(GetDlgItem(hDlg, IDC_MULTISAMPLE), item > 1);
+
+	EnableWindow(GetDlgItem(hDlg, IDC_MULTISAMPLE), FALSE); // disable multisampling selection
 }
 
 static void refreshFormats(HWND hDlg)
@@ -235,8 +237,6 @@ static LRESULT onInitDialog(HWND hDlg)
 
 	// select default soundcard
 	SendMessage(GetDlgItem(hDlg, IDC_SOUNDCARD), (UINT)CB_SETCURSEL, (WPARAM)DEFAULT_SOUNDCARD, 0);
-
-	EnableWindow(GetDlgItem(hDlg, IDC_MULTISAMPLE), FALSE); // disable multisampling selection
 
 	return (LRESULT)TRUE;
 }
